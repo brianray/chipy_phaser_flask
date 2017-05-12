@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>jupy</title>
+        <script src="//cdn.jsdelivr.net/phaser/2.5.0/phaser.min.js"></script>
+        <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    </head>
+    <body>
+
+    <script type="text/javascript">
+
+
+    window.onload = function() {
+         var socket = io.connect('{{ url }}');
+         var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { create: create });
+        var text;
+        function create() {
+
+            var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
+
+            text = game.add.text(game.world.centerX, game.world.centerY, "Hello chipy", style);
+
+            text.anchor.set(0.5);
+            // 1   -----
+            text.inputEnabled = true;
+            text.events.onInputDown.add(click, this);
+
+        }
+        function click(item) {
+            var a = 1;
+            // 2 =----
+            socket.emit('handle_hello', {});   
+        }
+
+        // 4 ----------
+        socket.on('do_time', function(data) {
+            if (text)
+                text.setText(data);
+        });
+
+
+   
+    };
+
+
+
+    </script>
+
+    </body>
+</html>
