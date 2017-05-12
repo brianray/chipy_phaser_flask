@@ -10,10 +10,9 @@
 
     <script type="text/javascript">
 
-
     window.onload = function() {
-         var socket = io.connect('{{ url }}');
-         var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { create: create });
+        var socket = io.connect('{{ url }}');
+        var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { create: create });
         var text;
         function create() {
 
@@ -22,21 +21,22 @@
             text = game.add.text(game.world.centerX, game.world.centerY, "Hello chipy", style);
 
             text.anchor.set(0.5);
+
             // 1   -----
-            text.inputEnabled = true;
-            text.events.onInputDown.add(click, this);
+            //text.inputEnabled = true;
+            //text.events.onInputDown.add(click, this);
 
         }
         function click(item) {
             var a = 1;
             // 2 =----
-            socket.emit('handle_hello', {});   
+            //socket.emit('handle_hello', {});   
         }
 
         // 4 ----------
         socket.on('set_time', function(data) {
-            if (text)
-                text.setText(data);
+            //if (text)
+            //    text.setText(data);
         });
 
 
