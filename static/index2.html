@@ -34,7 +34,7 @@
         }
 
         // 4 ----------
-        socket.on('do_time', function(data) {
+        socket.on('set_time', function(data) {
             if (text)
                 text.setText(data);
         });

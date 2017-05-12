@@ -46,7 +46,7 @@ def test_disconnect():
 def do_handle_hello(message):
     app.logger.info("got hello")
     # 3 -----
-    emit('do_time', time.strftime("%d/%m/%Y %H:%M:%S"))
+    emit('set_time', time.strftime("%d/%m/%Y %H:%M:%S"))
 
 
 def set_logging():
